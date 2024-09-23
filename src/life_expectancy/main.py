@@ -38,7 +38,7 @@ def main(ctx: click.Context, verbose: bool) -> None:
         # logging.basicConfig(level=logging.WARNING)
 
 
-@main.command(cls=click_command_cls)  # type: ignore
+@main.command(cls=click_command_cls)
 def download_data() -> None:
     """``life-expectancy download-data`` downloads the data from ..."""
     config = Config()

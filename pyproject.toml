@@ -9,6 +9,7 @@ dependencies = [
     "colorama>=0.4.6",
     "platformdirs>=4.3.6",
     "scikit-learn>=1.5.2",
+    "sphinx-autodoc-typehints>=2.0.0",
     "sphinx-click-rst-to-ansi-formatter>=0.1.1",
 ]
 packages = [{include = "life_expectancy", from = "src"}]
@@ -30,5 +31,14 @@ dev-dependencies = [
     "pytest-mock>=3.14.0",
     "pytest>=8.3.3",
     "ruff>=0.6.6",
+    "sphinx-rtd-theme>=2.0.0",
+    "sphinx>=7.0.0",
+    "sphinx-click>=6.0.0",
+    "types-click>=7.1.8",
     "types-colorama>=0.4.15.20240311",
+    "pre-commit>=3.8.0",
+    "rstcheck>=6.2.4",
 ]
+
+[tool.coverage.report]
+fail_under = 100

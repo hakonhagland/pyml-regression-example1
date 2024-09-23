@@ -1,5 +1,9 @@
 import locale
 import logging
+import os
+import requests
+
+from pathlib import Path
 
 import click
 import colorama
@@ -43,4 +47,11 @@ def download_data() -> None:
     """``life-expectancy download-data`` downloads the data from ..."""
     config = Config()
     datadir = config.get_data_dir()
-    click.echo(f"Downloading data to {datadir}")
+    data_url = "https://github.com/ageron/data/raw/main/lifesat/lifesat.csv"
+    response = requests.get(data_url)
+    response.raise_for_status()  # Ensure we notice bad responses
+    os.makedirs(datadir, exist_ok=True)
+    savename = Path(datadir) / "lifesat.csv"
+    with open(savename, "w", encoding="utf-8") as f:
+        f.write(response.content.decode("utf-8"))
+    logging.info(f"Data downloaded and saved to {savename}")

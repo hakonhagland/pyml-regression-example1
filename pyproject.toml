@@ -3,7 +3,7 @@ name = "pyml-regression-example1"
 version = "0.1.0"
 description = "Python Machine Learning Regression Example: Life Expectancy"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "click>=8.1.7",
     "colorama>=0.4.6",
@@ -38,6 +38,7 @@ dev-dependencies = [
     "types-colorama>=0.4.15.20240311",
     "pre-commit>=3.8.0",
     "rstcheck>=6.2.4",
+    "tox>=4.20.0",
 ]
 
 [tool.coverage.report]

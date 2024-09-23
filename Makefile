@@ -2,7 +2,7 @@
 ROOT := $(shell pwd)
 
 .PHONY: coverage docs mypy test publish-to-pypi tox
-.PHONY: ruff-check ruff-fix ruff-format rstcheck
+.PHONY: ruff-check ruff-fix ruff-format rstcheck view-docs
 
 coverage:
 	coverage run -m pytest tests
@@ -10,6 +10,9 @@ coverage:
 
 docs:
 	cd "$(ROOT)"/docs && make clean && make html
+
+view-docs:
+	@echo xdg-open "file://$(ROOT)/docs/_build/html/index.html"
 
 mypy:
 	mypy --strict src/ tests/

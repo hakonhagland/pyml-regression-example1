@@ -1,9 +1,10 @@
 FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+# NOTE: python3-tk is used for matplotlib
 RUN apt-get update && apt-get install -y \
     sudo wget curl vim \
-    python3 python3-pip python3-venv python3-dev \
+    python3 python3-pip python3-venv python3-dev python3-tk \
     libegl1 libxkbcommon-x11-dev libdbus-1-dev libglib2.0-0 \
     libgl1 git libxcb-cursor0 \
     && apt-get clean \
@@ -48,9 +49,7 @@ ENV PATH=/home/$USERNAME/.local/bin:$PATH
 RUN python3 -m pip install --user pipx --break-system-packages && \
     /home/$USERNAME/.local/bin/pipx install uv
 
-#RUN /home/$USERNAME/.local/bin/poetry install
-RUN cd $PROJECTDIR && uv venv && uv pip install -e .
+RUN cd $PROJECTDIR && uv venv && uv sync
 
 # Command to run when starting the container
 CMD [ "bash" ]
-

@@ -9,10 +9,11 @@ dependencies = [
     "colorama>=0.4.6",
     "matplotlib>=3.9.2",
     "numpy>=2.1.1",
+    "pandas>=2.2.3",
     "platformdirs>=4.3.6",
     "scikit-learn>=1.5.2",
     "sphinx-autodoc-typehints>=2.0.0",
-    "sphinx-click-rst-to-ansi-formatter>=0.1.1",
+    "sphinx-click-rst-to-ansi-formatter>=0.1.2",
 ]
 packages = [{include = "life_expectancy", from = "src"}]
 
@@ -42,6 +43,8 @@ dev-dependencies = [
     "rstcheck>=6.2.4",
     "tox>=4.20.0",
     "types-requests>=2.32.0.20240914",
+    "matplotlib-stubs>=0.1.0",
+    "pandas-stubs>=2.2.2.240909",
 ]
 
 [tool.coverage.report]

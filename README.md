@@ -4,12 +4,19 @@ Example from Chapter 1 of the book [Hands-on Machine Learning with Scikit-Learn,
 
 ## Installation from Git source
 ```
-$ uv venv
-$ uv pip install -e .
+$ python -m venv .venv
 $ source .venv/bin/activate
-
+$ pip install .
+```
+or if you plan to change the source code, install for development like this:
+```
+$ uv venv
+$ uv sync   # Install dependencies
+$ source .venv/bin/activate
+```
+Then, test the installed script:
+```
+$ life-expectancy --help
 # Test a sub command, e.g. download-data
 $ life-expectancy download-data
 ```
-
-

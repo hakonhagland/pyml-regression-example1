@@ -1,7 +1,11 @@
 #!/bin/bash
 
+script_dir=$(pwd)
+
+cd ..  # Need to be in the root of the repository for git commands to work
+
 # Check for unstaged files
-unstaged_files=$(git ls-files -m)
+unstaged_files=$(git diff --name-only)
 
 # Check for untracked files
 untracked_files=$(git ls-files --others --exclude-standard)
@@ -14,17 +18,17 @@ if [ -n "$unstaged_files" ] || [ -n "$untracked_files" ] || [ -n "$staged_files"
 
     if [ -n "$unstaged_files" ]; then
         echo "Unstaged files:"
-        echo "$unstaged_files"
-    fi
+        echo -e "\e[31m$unstaged_files\e[0m"
+        fi
 
     if [ -n "$untracked_files" ]; then
         echo "Untracked files:"
-        echo "$untracked_files"
+        echo -e "\e[31m$untracked_files\e[0m"
     fi
 
     if [ -n "$staged_files" ]; then
         echo "Staged but uncommitted files:"
-        echo "$staged_files"
+        echo -e "\e[32m$staged_files\e[0m"
     fi
 
     read -p "Do you want to add unstaged and untracked files? (y/n) [y]: " -n 1 -r

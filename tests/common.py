@@ -9,3 +9,8 @@ from pathlib import Path
 class PrepareConfigDir(Protocol):  # pragma: no cover
     def __call__(self, add_config_ini: bool) -> Path:
         pass
+
+
+class PrepareDataDir(Protocol):  # pragma: no cover
+    def __call__(self, datafile_exists: bool) -> Path:
+        pass

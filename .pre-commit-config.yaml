@@ -29,6 +29,8 @@ repos:
           - types-colorama==0.4.15.20240311
           - types-click==7.1.8
           - types-requests>=2.32.0.20240914
+          - matplotlib-stubs>=0.1.0
+          - pandas-stubs>=2.2.2.240909
         args: []
         pass_filenames: false
         entry: mypy src tests

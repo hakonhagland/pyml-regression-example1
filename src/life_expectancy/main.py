@@ -64,7 +64,8 @@ def main(ctx: click.Context, verbose: bool) -> None:
 
 @main.command(cls=click_command_cls)
 def download_data() -> None:
-    """``life-expectancy download-data`` downloads the data from ..."""
+    """``life-expectancy download-data`` downloads the data from
+    `the book's web page. <https://github.com/ageron/handson-ml3>`_"""
     config = Config()
     datadir = config.get_data_dir()
     helpers.download_data(datadir)
@@ -72,7 +73,8 @@ def download_data() -> None:
 
 @main.command(cls=click_command_cls)
 def plot_data() -> None:
-    """``life-expectancy plot-data`` plots the data ..."""
+    """``life-expectancy plot-data`` scatter plots the downloaded data. If the data
+    is not found, it will be downloaded."""
     logging.info(f"Matplotlib backend: {matplotlib.get_backend()}")
     config = Config()
     datadir = config.get_data_dir()

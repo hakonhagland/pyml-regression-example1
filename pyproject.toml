@@ -13,7 +13,7 @@ dependencies = [
     "platformdirs>=4.3.6",
     "scikit-learn>=1.5.2",
     "sphinx-autodoc-typehints>=2.0.0",
-    "sphinx-click-rst-to-ansi-formatter>=0.1.2",
+    "sphinx-click-rst-to-ansi-formatter>=0.1.4",
 ]
 packages = [{include = "life_expectancy", from = "src"}]
 

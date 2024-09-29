@@ -13,6 +13,7 @@ or if you plan to change the source code, install for development like this:
 $ uv venv
 $ uv sync   # Install dependencies
 $ source .venv/bin/activate
+$ source shell_completion/bash.sh   # optionally enable shell completions
 ```
 Then, test the installed script:
 ```
@@ -20,3 +21,5 @@ $ life-expectancy --help
 # Test a sub command, e.g. download-data
 $ life-expectancy download-data
 ```
+
+For more information, see [the documentation](https://hakonhagland.github.io/pyml-regression-example1/).

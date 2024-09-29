@@ -23,6 +23,7 @@ From GitHub
     $ python -m venv .venv  # optionally create venv
     $ source .venv/bin/activate
     $ pip install .
+    $ source shell_completion/bash.sh   # On Linux/macOS: optionally enable shell completion
 
 .. note::
     On Windows (powershell) type ``.\.venv\Scripts\Activate.ps1`` to activate the venv

@@ -1,5 +1,7 @@
 import locale
 import logging
+import os
+import platform
 
 from pathlib import Path
 
@@ -36,7 +38,11 @@ plt.rc("axes", labelsize=14, titlesize=14)
 plt.rc("legend", fontsize=12)
 plt.rc("xtick", labelsize=10)
 plt.rc("ytick", labelsize=10)
-matplotlib.use("TkAgg")  # Ensure that the Tkinter backend is used for docker containers
+# Check for a display (relevant for Linux)
+if platform.system() != "Windows":  # pragma: no cover
+    if os.environ.get("DISPLAY") is None:
+        # Set to a non-interactive backend if there's no display, e.g. GitHub Actions
+        matplotlib.use("Agg")
 
 
 @click.group(cls=make_rst_to_ansi_formatter(doc_url, group=True, colors=cli_colors))

@@ -12,7 +12,7 @@ docs:
 	cd "$(ROOT)"/docs && make clean && make html
 
 view-docs:
-	@echo xdg-open "file://$(ROOT)/docs/_build/html/index.html"
+	@xdg-open "file://$(ROOT)/docs/_build/html/index.html"
 
 mypy:
 	mypy --strict src/ tests/

@@ -19,7 +19,7 @@ jobs:
           with:
             uv-venv: ".venv"
         - name: Install python dependencies
-          run: uv pip install -e .
+          run: uv sync
         - name: Build documentation
           run: |
             mkdir gh-pages

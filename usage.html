@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Suggesting changes to the code" href="development.html" />
+    <link rel="next" title="Results" href="results.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
@@ -59,6 +59,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
 </ul>
@@ -119,8 +120,10 @@
 
 <section id="life-expectancy-download-data">
 <h4>download-data<a class="headerlink" href="#life-expectancy-download-data" title="Link to this heading"></a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">life-expectancy</span> <span class="pre">download-data</span></code> downloads the data from
-<a class="reference external" href="https://github.com/ageron/handson-ml3">the book’s web page.</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">life-expectancy</span> <span class="pre">download-data</span></code> downloads the life-expectancy data. If the
+flag <code class="docutils literal notranslate"><span class="pre">--simplified</span></code> is set, the simplified data will be downloaded from
+<a class="reference external" href="https://github.com/ageron/handson-ml3">the book’s web page.</a>, otherwise the
+full data will be downloaded from <a class="reference external" href="https://sdmx.oecd.org/archive/">https://sdmx.oecd.org/archive/</a>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>life-expectancy<span class="w"> </span>download-data<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -132,6 +135,13 @@ is not found, it will be downloaded.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>life-expectancy<span class="w"> </span>plot-data<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-life-expectancy-plot-data-simplified">
+<span class="sig-name descname"><span class="pre">--simplified</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;simplified&gt;</span></span><a class="headerlink" href="#cmdoption-life-expectancy-plot-data-simplified" title="Link to this definition"></a></dt>
+<dd><p>Plot the simplified data</p>
+</dd></dl>
+
 </section>
 </section>
 </section>
@@ -142,7 +152,7 @@ is not found, it will be downloaded.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="development.html" class="btn btn-neutral float-right" title="Suggesting changes to the code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="results.html" class="btn btn-neutral float-right" title="Results" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

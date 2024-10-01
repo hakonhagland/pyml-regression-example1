@@ -70,15 +70,18 @@ def main(ctx: click.Context, verbose: bool) -> None:
 
 @main.command(cls=click_command_cls)
 def download_data() -> None:
-    """``life-expectancy download-data`` downloads the data from
-    `the book's web page. <https://github.com/ageron/handson-ml3>`_"""
+    """``life-expectancy download-data`` downloads the life-expectancy data. If the
+    flag ``--simplified`` is set, the simplified data will be downloaded from
+    `the book's web page. <https://github.com/ageron/handson-ml3>`_, otherwise the
+    full data will be downloaded from `<https://sdmx.oecd.org/archive/>`_."""
     config = Config()
     datadir = config.get_data_dir()
     helpers.download_data(datadir)
 
 
 @main.command(cls=click_command_cls)
-def plot_data() -> None:
+@click.option("--simplified", is_flag=False, help="Plot the simplified data")
+def plot_data(simplified: bool) -> None:
     """``life-expectancy plot-data`` scatter plots the downloaded data. If the data
     is not found, it will be downloaded."""
     logging.info(f"Matplotlib backend: {matplotlib.get_backend()}")

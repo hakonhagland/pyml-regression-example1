@@ -42,7 +42,7 @@ RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
 
 USER $USERNAME
 
-# Install pipx and poetry for the user
+# Install pipx and uv for the user
 ENV PATH=/home/$USERNAME/.local/bin:$PATH
 RUN python3 -m pip install --user pipx --break-system-packages && \
     /home/$USERNAME/.local/bin/pipx install uv

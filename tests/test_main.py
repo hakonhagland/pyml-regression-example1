@@ -275,6 +275,7 @@ class TestBliExtractSubTableCmd:
             assert result.exception is not None
         else:
             assert result.exit_code == 0
+            # Windows uses '\r\n' for newlines, so normalize the output
             normalized_output = re.sub(r"\r\n?", "\n", result.output)
             assert normalized_output.startswith(
                 "Country|Labour market insecurity\nAustria"

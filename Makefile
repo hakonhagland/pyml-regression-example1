@@ -31,6 +31,7 @@ rstcheck:
 
 publish-to-pypi:
 	uv build
+	twine upload dist/*
 
 test:
 	pytest tests/

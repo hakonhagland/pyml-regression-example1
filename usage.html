@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Results" href="results.html" />
+    <link rel="next" title="Theory" href="theory.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
@@ -64,6 +64,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="results.html">Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
@@ -109,9 +110,17 @@
 <p><code class="docutils literal notranslate"><span class="pre">life-expectancy</span></code> let’s you explore life expectancy data presented in Chapter
 1 of the book <a class="reference external" href="https://github.com/ageron/handson-ml3">Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.)</a>.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">download-data</span></code>: downloads the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> data file from
-<a class="reference external" href="https://github.com/ageron/handson-ml3">the book web page</a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">plot-data</span></code>: plots the data using <a class="reference external" href="https://matplotlib.org/stable/index.html">matplotlib</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">download-data</span></code>: downloads the three <code class="docutils literal notranslate"><span class="pre">.csv</span></code> data files. The simplified data from
+<a class="reference external" href="https://github.com/ageron/handson-ml3">the book web page</a>, the full <cite>better life index</cite>
+data from <a class="reference external" href="https://sdmx.oecd.org/archive/">sdmx.oecd.org</a>, and the GDP per capita data
+from <a class="reference external" href="https://ourworldindata.org/grapher/gdp-per-capita-worldbank">ourworldindata.org</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot-simplified</span></code>: plots the simplified data file using <a class="reference external" href="https://matplotlib.org/stable/index.html">matplotlib</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">info</span></code>: prints information about the downloaded data files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">info-gdp</span></code>: prints information about the GDP data file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot-gdp</span></code>: plots the GDP data file using <a class="reference external" href="https://matplotlib.org/stable/index.html">matplotlib</a>.
+or <a class="reference external" href="https://plotly.com/python/">plotly</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bli-extract-column</span></code>: extracts a column from the full Better Life Index data file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bli-extract-subtable</span></code>: extracts a sub table from the full Better Life Index data file.</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>life-expectancy<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
 </pre></div>
@@ -247,7 +256,7 @@ is not found, it will be downloaded. The data can be plotted using Matplotlib or
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="results.html" class="btn btn-neutral float-right" title="Results" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="theory.html" class="btn btn-neutral float-right" title="Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

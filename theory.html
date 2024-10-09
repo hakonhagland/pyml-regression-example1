@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TODO (Further work needed) &mdash; pyml-regression-example1 0.1 documentation</title>
+  <title>Theory &mdash; pyml-regression-example1 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -18,10 +18,12 @@
         <script src="_static/documentation_options.js?v=2709fde1"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Suggesting changes to the code" href="development.html" /> 
+    <link rel="next" title="Results" href="results.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,10 +50,10 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="results.html">Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
 </ul>
 
         </div>
@@ -68,9 +70,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">TODO (Further work needed)</li>
+      <li class="breadcrumb-item active">Theory</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/hakonhagland/pyml-regression-example1/blob/main/docs/todo.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/hakonhagland/pyml-regression-example1/blob/main/docs/theory.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -78,18 +80,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="todo-further-work-needed">
-<h1>TODO (Further work needed)<a class="headerlink" href="#todo-further-work-needed" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p>Add GitHub Actions for CI/CD</p></li>
-</ul>
+  <section id="theory">
+<h1>Theory<a class="headerlink" href="#theory" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.LinearRegression.fit()</span></code> method is the most common method used to fit a
+linear regression model. It is implemented as an
+<a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">Ordinary Least Squares method</a>
+and wrapped as a predictor object.</p>
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression">LinearRegression</a>
+fits a linear model with coefficients <span class="math notranslate nohighlight">\(w = (w_1, ..., w_p)\)</span>
+to minimize the residual sum of squares between the observed targets in the dataset, and the targets
+predicted by the linear approximation. Mathematically it solves a problem of the form:</p>
+<div class="math notranslate nohighlight">
+\[\min_w ||Xw - y||^2_2\]</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="development.html" class="btn btn-neutral float-left" title="Suggesting changes to the code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="results.html" class="btn btn-neutral float-right" title="Results" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

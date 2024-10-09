@@ -9,6 +9,7 @@ Welcome to pyml-regression-example1's documentation!
     introduction
     installation
     usage
+    theory
     results
     Development <development>
     TODO <todo>

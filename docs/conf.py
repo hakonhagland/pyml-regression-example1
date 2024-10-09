@@ -12,6 +12,7 @@ extensions = [
     "sphinx.ext.coverage",
     "sphinx_autodoc_typehints",
     "sphinx_click",
+    "sphinx.ext.mathjax",
 ]
 
 templates_path = ["_templates"]

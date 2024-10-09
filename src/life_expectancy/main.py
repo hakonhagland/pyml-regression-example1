@@ -57,11 +57,23 @@ def main(ctx: click.Context, verbose: bool) -> None:
     1 of the book `Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd ed.) <https://github.com/ageron/handson-ml3>`_.
 
 
-    * ``download-data``: downloads the ``.csv`` data file from
-      `the book web page <https://github.com/ageron/handson-ml3>`_.
+    * ``download-data``: downloads the three ``.csv`` data files. The simplified data from
+      `the book web page <https://github.com/ageron/handson-ml3>`_, the full `better life index`
+      data from `sdmx.oecd.org <https://sdmx.oecd.org/archive/>`_, and the GDP per capita data
+      from `ourworldindata.org <https://ourworldindata.org/grapher/gdp-per-capita-worldbank>`_.
 
-    * ``plot-data``: plots the data using `matplotlib <https://matplotlib.org/stable/index.html>`_.
+    * ``plot-simplified``: plots the simplified data file using `matplotlib <https://matplotlib.org/stable/index.html>`_.
 
+    * ``info``: prints information about the downloaded data files.
+
+    * ``info-gdp``: prints information about the GDP data file.
+
+    * ``plot-gdp``: plots the GDP data file using `matplotlib <https://matplotlib.org/stable/index.html>`__.
+      or `plotly <https://plotly.com/python/>`_.
+
+    * ``bli-extract-column``: extracts a column from the full Better Life Index data file.
+
+    * ``bli-extract-subtable``: extracts a sub table from the full Better Life Index data file.
     """
     ctx.ensure_object(dict)
     ctx.obj["VERBOSE"] = verbose

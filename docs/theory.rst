@@ -1,16 +1,14 @@
 Theory
 ======
 
-The ``sklearn.linear_model.LinearRegression.fit()`` method is the most common method used to fit a
-linear regression model. It is implemented as an
-`Ordinary Least Squares method <https://en.wikipedia.org/wiki/Ordinary_least_squares>`_
-and wrapped as a predictor object.
+.. toctree::
+   :hidden:
 
-`LinearRegression <https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression>`_
-fits a linear model with coefficients :math:`w = (w_1, ..., w_p)`
-to minimize the residual sum of squares between the observed targets in the dataset, and the targets
-predicted by the linear approximation. Mathematically it solves a problem of the form:
+   theory/linear_regression
+   theory/least_squares
 
-.. math::
+See the documents below for more information on the theory behind the models and methods used in
+``sklearn`` for linear regressions.
 
-   \min_w ||Xw - y||^2_2
+* :doc:`linear regressions <theory/linear_regression>`.
+* :doc:`least squares <theory/least_squares>`.

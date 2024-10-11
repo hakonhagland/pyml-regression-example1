@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import plotly.express as px  # type: ignore
+from sklearn.linear_model import LinearRegression  # type: ignore
 
 # import plotly.graph_objects as go
 from plotly.graph_objs import Figure  # type: ignore
@@ -62,7 +63,8 @@ def main(ctx: click.Context, verbose: bool) -> None:
       data from `sdmx.oecd.org <https://sdmx.oecd.org/archive/>`_, and the GDP per capita data
       from `ourworldindata.org <https://ourworldindata.org/grapher/gdp-per-capita-worldbank>`_.
 
-    * ``plot-simplified``: plots the simplified data file using `matplotlib <https://matplotlib.org/stable/index.html>`_.
+    * ``plot-simplified``: plots the simplified data file using
+      `matplotlib <https://matplotlib.org/stable/index.html>`_.
 
     * ``info``: prints information about the downloaded data files.
 
@@ -74,6 +76,9 @@ def main(ctx: click.Context, verbose: bool) -> None:
     * ``bli-extract-column``: extracts a column from the full Better Life Index data file.
 
     * ``bli-extract-subtable``: extracts a sub table from the full Better Life Index data file.
+
+    * ``linear-regression``: performs linear regression on the simplified data file. Plots the
+        regression line and the data points using matplotlib.
     """
     ctx.ensure_object(dict)
     ctx.obj["VERBOSE"] = verbose
@@ -254,3 +259,30 @@ def bli_extract_subtable(inequality: Inequality) -> None:
             index="Country", columns="Indicator", values="OBS_VALUE"
         )
         print(bli_sub.to_csv(sep="|"))
+
+
+@main.command(cls=click_command_cls)
+def linear_regression() -> None:
+    """``life-expectancy linear-regression`` performs linear regression on the simplified data file.
+    It plots the regression line and the data points using matplotlib."""
+    logging.info(f"Matplotlib backend: {matplotlib.get_backend()}")
+    config = Config()
+    lifesat = helpers.get_lifesat_data(config, download=True)
+    if lifesat is not None:
+        lifesat.plot(
+            kind="scatter",
+            grid=True,
+            x="GDP per capita (USD)",
+            y="Life satisfaction",
+        )
+        X = lifesat[["GDP per capita (USD)"]].values
+        y = lifesat[["Life satisfaction"]].values
+        model = LinearRegression()
+        model.fit(X, y)
+        X_new = np.linspace(23_500, 62_500, 1000).reshape(-1, 1)
+        y_new = model.predict(X_new)
+        logging.info(f"Model slope: {model.coef_[0][0]:.2f}")
+        logging.info(f"Model intercept: {model.intercept_[0]:.2f}")
+        plt.plot(X_new, y_new, "r-")
+        plt.axis([23_500, 62_500, 4, 9])  # [xmin, xmax, ymin, ymax]
+        plt.show()  # type: ignore

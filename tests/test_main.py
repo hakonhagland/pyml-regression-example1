@@ -280,3 +280,29 @@ class TestBliExtractSubTableCmd:
             assert normalized_output.startswith(
                 "Country|Labour market insecurity\nAustria"
             )
+
+
+class TestLinearRegressionCmd:
+    def test_invoke(
+        self,
+        caplog: LogCaptureFixture,
+        mocker: MockerFixture,
+        prepare_config_dir: PrepareConfigDir,
+        prepare_data_dir: PrepareDataDir,
+        mock_requests_get: MockRequestGet,
+        datafile_contents: DataFileContents,
+    ) -> None:
+        caplog.set_level(logging.INFO)
+        prepare_data_dir(datafiles_exists=True)
+        prepare_config_dir(add_config_ini=True)
+        mocker.patch.object(pd.DataFrame, "plot")
+        mocker.patch("matplotlib.pyplot.show", return_value=None)
+        import matplotlib
+
+        matplotlib.use("Agg")
+        runner = CliRunner()
+        args = ["linear-regression"]
+        result = runner.invoke(main.main, args)
+        assert result.exit_code == 0
+        assert caplog.records[-2].message.startswith("Model slope:")
+        assert caplog.records[-1].message.startswith("Model intercept:")

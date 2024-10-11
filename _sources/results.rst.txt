@@ -12,3 +12,9 @@ Running ``life-expectancy plot-gdp --plotly`` gives:
 .. image:: images/gdp1.png
    :alt: Plotly plot of GDP for the year 2021
    :width: 100%
+
+Running ``life-expectancy linear-regression`` gives:
+
+.. image:: images/regression1.png
+   :alt: Linear regression plot of life expectancy vs GDP for the year 2021
+   :width: 100%

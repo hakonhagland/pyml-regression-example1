@@ -56,6 +56,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#life-expectancy-download-data">download-data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#life-expectancy-info">info</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#life-expectancy-info-gdp">info-gdp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#life-expectancy-linear-regression">linear-regression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#life-expectancy-plot-gdp">plot-gdp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#life-expectancy-plot-simplified">plot-simplified</a></li>
 </ul>
@@ -114,13 +115,19 @@
 <a class="reference external" href="https://github.com/ageron/handson-ml3">the book web page</a>, the full <cite>better life index</cite>
 data from <a class="reference external" href="https://sdmx.oecd.org/archive/">sdmx.oecd.org</a>, and the GDP per capita data
 from <a class="reference external" href="https://ourworldindata.org/grapher/gdp-per-capita-worldbank">ourworldindata.org</a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">plot-simplified</span></code>: plots the simplified data file using <a class="reference external" href="https://matplotlib.org/stable/index.html">matplotlib</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot-simplified</span></code>: plots the simplified data file using
+<a class="reference external" href="https://matplotlib.org/stable/index.html">matplotlib</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">info</span></code>: prints information about the downloaded data files.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">info-gdp</span></code>: prints information about the GDP data file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">plot-gdp</span></code>: plots the GDP data file using <a class="reference external" href="https://matplotlib.org/stable/index.html">matplotlib</a>.
 or <a class="reference external" href="https://plotly.com/python/">plotly</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bli-extract-column</span></code>: extracts a column from the full Better Life Index data file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bli-extract-subtable</span></code>: extracts a sub table from the full Better Life Index data file.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">linear-regression</span></code>: performs linear regression on the simplified data file. Plots the</dt><dd><p>regression line and the data points using matplotlib.</p>
+</dd>
+</dl>
+</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>life-expectancy<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
 </pre></div>
@@ -204,6 +211,14 @@ to the author’s GitHub repo instead.</p>
 <h4>info-gdp<a class="headerlink" href="#life-expectancy-info-gdp" title="Link to this heading"></a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">life-expectancy</span> <span class="pre">info-gdp</span></code> prints information about the GDP data file.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>life-expectancy<span class="w"> </span>info-gdp<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="life-expectancy-linear-regression">
+<h4>linear-regression<a class="headerlink" href="#life-expectancy-linear-regression" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">life-expectancy</span> <span class="pre">linear-regression</span></code> performs linear regression on the simplified data file.
+It plots the regression line and the data points using matplotlib.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>life-expectancy<span class="w"> </span>linear-regression<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
 </section>

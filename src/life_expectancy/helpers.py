@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 from pathlib import Path
 from life_expectancy.config import Config
-from life_expectancy.constants import FileNames
+from life_expectancy.constants import FileNames, Inequality
 
 
 def download_data(datadir: Path) -> None:
@@ -43,6 +43,18 @@ def download_data_from_url(
             logging.info(f"Data file {savename} already exists, skipping download")
             continue
         download_file(savename, data_url)
+
+
+def get_bli_subtable(config: Config, inequality: Inequality) -> pd.DataFrame:
+    bli = get_bli_data(config, download=True)
+    if bli is None:
+        raise ValueError("Could not download BLI data file")
+    # Extract the sub table
+    bli_inequality = bli[bli["INEQUALITY"] == inequality.value]
+    bli_sub = bli_inequality.pivot(
+        index="Country", columns="Indicator", values="OBS_VALUE"
+    )
+    return bli_sub
 
 
 def get_gdp_data(config: Config, download: bool = True) -> pd.DataFrame | None:

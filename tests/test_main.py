@@ -155,7 +155,7 @@ class TestInfoGdpCmd:
         args = ["info-gdp"]
         result = runner.invoke(main.main, args)
         assert result.exit_code == 0
-        assert "Number of countries: 1" in result.output
+        assert "Number of countries: 2" in result.output
         assert caplog.records[-1].message.startswith("Read config file:")
 
 
@@ -278,13 +278,15 @@ class TestBliExtractSubTableCmd:
             # Windows uses '\r\n' for newlines, so normalize the output
             normalized_output = re.sub(r"\r\n?", "\n", result.output)
             assert normalized_output.startswith(
-                "Country|Labour market insecurity\nAustria"
+                "Country|Labour market insecurity|Life satisfaction\nAustria"
             )
 
 
 class TestLinearRegressionCmd:
+    @pytest.mark.parametrize("simplified", [True, False])
     def test_invoke(
         self,
+        simplified: bool,
         caplog: LogCaptureFixture,
         mocker: MockerFixture,
         prepare_config_dir: PrepareConfigDir,
@@ -302,6 +304,8 @@ class TestLinearRegressionCmd:
         matplotlib.use("Agg")
         runner = CliRunner()
         args = ["linear-regression"]
+        if simplified:
+            args.append("--simplified")
         result = runner.invoke(main.main, args)
         assert result.exit_code == 0
         assert caplog.records[-2].message.startswith("Model slope:")

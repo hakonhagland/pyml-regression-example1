@@ -2,6 +2,7 @@ import locale
 import logging
 import os
 import platform
+import typing
 
 from pathlib import Path
 
@@ -251,38 +252,52 @@ def bli_extract_subtable(inequality: Inequality) -> None:
     and the 'OBS_VALUE' column as the values. Valid values for the inequality argument are:
     TOT, WMN, MN, LW, and HGH. (Or alternatively use the full names: TOTAL, WOMAN, MAN, LOW, HIGH)."""
     config = Config()
-    bli = helpers.get_bli_data(config, download=True)
-    if bli is not None:
-        # Extract the sub table
-        bli_inequality = bli[bli["INEQUALITY"] == inequality.value]
-        bli_sub = bli_inequality.pivot(
-            index="Country", columns="Indicator", values="OBS_VALUE"
-        )
-        print(bli_sub.to_csv(sep="|"))
+    bli = helpers.get_bli_subtable(config, inequality=inequality)
+    print(bli.to_csv(sep="|"))
 
 
 @main.command(cls=click_command_cls)
-def linear_regression() -> None:
+@click.option("--simplified", "-s", is_flag=True, help="Use simplified data")
+@click.option(
+    "--year", "-y", type=int, default=2021, help="Year to filter the full data"
+)
+def linear_regression(simplified: bool, year: int) -> None:
     """``life-expectancy linear-regression`` performs linear regression on the simplified data file.
     It plots the regression line and the data points using matplotlib."""
     logging.info(f"Matplotlib backend: {matplotlib.get_backend()}")
     config = Config()
-    lifesat = helpers.get_lifesat_data(config, download=True)
-    if lifesat is not None:
-        lifesat.plot(
-            kind="scatter",
-            grid=True,
-            x="GDP per capita (USD)",
-            y="Life satisfaction",
-        )
-        X = lifesat[["GDP per capita (USD)"]].values
-        y = lifesat[["Life satisfaction"]].values
-        model = LinearRegression()
-        model.fit(X, y)
-        X_new = np.linspace(23_500, 62_500, 1000).reshape(-1, 1)
-        y_new = model.predict(X_new)
-        logging.info(f"Model slope: {model.coef_[0][0]:.2f}")
-        logging.info(f"Model intercept: {model.intercept_[0]:.2f}")
-        plt.plot(X_new, y_new, "r-")
-        plt.axis([23_500, 62_500, 4, 9])  # [xmin, xmax, ymin, ymax]
-        plt.show()  # type: ignore
+    if simplified:
+        data = helpers.get_lifesat_data(config, download=True)
+        data = typing.cast(pd.DataFrame, data)
+        gdp_column = "GDP per capita (USD)"
+    else:
+        gdp = helpers.get_gdp_data(config, download=True)
+        gdp = typing.cast(pd.DataFrame, gdp)
+        country_name_column = "Entity"
+        gdp_column = "GDP per capita, PPP (constant 2017 international $)"
+        gdp = gdp[gdp["Year"] == year]
+        gdp = gdp[[country_name_column, gdp_column]]
+        gdp.set_index(country_name_column, inplace=True, drop=True)
+        bli = helpers.get_bli_subtable(config, inequality=Inequality.TOTAL)
+        # NOTE: The index of the BLI data is the country name, so that will automatically be used
+        bli = bli[["Life satisfaction"]]
+        data = pd.merge(gdp, bli, left_index=True, right_index=True, how="inner")
+    data.plot(
+        kind="scatter",
+        grid=True,
+        x=gdp_column,
+        y="Life satisfaction",
+    )
+    X = data[[gdp_column]].values
+    y = data[["Life satisfaction"]].values
+    model = LinearRegression()
+    model.fit(X, y)
+    xmin = X.min() - 500
+    xmax = X.max() + 500
+    X_new = np.linspace(xmin, xmax, 1000).reshape(-1, 1)
+    y_new = model.predict(X_new)
+    logging.info(f"Model slope: {model.coef_[0][0]:.2f}")
+    logging.info(f"Model intercept: {model.intercept_[0]:.2f}")
+    plt.plot(X_new, y_new, "r-")
+    plt.axis([xmin, xmax, 4, 9])  # [xmin, xmax, ymin, ymax]
+    plt.show()  # type: ignore

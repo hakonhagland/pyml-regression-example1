@@ -262,8 +262,11 @@ def bli_extract_subtable(inequality: Inequality) -> None:
     "--year", "-y", type=int, default=2021, help="Year to filter the full data"
 )
 def linear_regression(simplified: bool, year: int) -> None:
-    """``life-expectancy linear-regression`` performs linear regression on the simplified data file.
-    It plots the regression line and the data points using matplotlib."""
+    """``life-expectancy linear-regression`` performs linear regression on the combined
+    GDP and life satisfaction data. If option ``--simplified`` is used, it will use the
+    simplified data. Otherwise, it will use the full data. If the full data is used, the
+    data will be filtered by the year specified with the ``--year`` option. The default
+    year is 2021. The regression line and the data points are plotted using matplotlib."""
     logging.info(f"Matplotlib backend: {matplotlib.get_backend()}")
     config = Config()
     if simplified:

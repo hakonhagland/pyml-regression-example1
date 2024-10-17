@@ -54,6 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="linear_regression.html">LinearRegression</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ordinary Least Squares</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relationship-to-the-normal-equations">Relationship to the Normal Equations</a></li>
 </ul>
 </li>
 </ul>
@@ -111,14 +112,67 @@ and you want to find the best line that fits these points in the plane. The equa
 <div class="math notranslate nohighlight">
 \[e_i = y_i - \hat{y}_i\]</div>
 <p>The ordinary least squares method minimizes the sum of the squared residuals:</p>
-<div class="math notranslate nohighlight">
-\[S(\beta_0, \beta_1) = \min_{\beta_0, \beta_1} \sum_{i=1}^{n} e_i^2 = \min_{\beta_0, \beta_1} \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i)^2\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-ols">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-ols" title="Link to this equation"></a></span>\[S(\beta_0, \beta_1) = \min_{\beta_0, \beta_1} \sum_{i=1}^{n} e_i^2 = \min_{\beta_0, \beta_1} \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i)^2\]</div>
 <p>To minimize this sum, we take the partial derivatives of <span class="math notranslate nohighlight">\(S\)</span> with respect to <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> and set them to zero:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\partial S}{\partial \beta_0} = -2 \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i) = 0\]</div>
 <div class="math notranslate nohighlight">
 \[\frac{\partial S}{\partial \beta_1} = -2 \sum_{i=1}^{n} x_i (y_i - \beta_0 - \beta_1 x_i) = 0\]</div>
-<p>You can imagine a cloud of data points scattered on a 2D plot. The OLS method fits a straight line through these points such that the vertical distances (errors) between the points and the line are as small as possible on average, and the squared differences are minimized.</p>
+<p>Solving these equations gives the values of <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> that minimize the sum of the squared residuals.</p>
+<div class="math notranslate nohighlight" id="equation-eq-beta-1">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-beta-1" title="Link to this equation"></a></span>\[\beta_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are the means of the independent and dependent variables,
+respectively. Once we have <span class="math notranslate nohighlight">\(\beta_1\)</span>, we can find <span class="math notranslate nohighlight">\(\beta_0\)</span> using the formula:</p>
+<div class="math notranslate nohighlight" id="equation-eq-beta-0">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-beta-0" title="Link to this equation"></a></span>\[\beta_0 = \bar{y} - \beta_1 \bar{x}\]</div>
+<p>Intuitively, we can see <span class="math notranslate nohighlight">\(\beta_1\)</span> as the slope of the line, and <span class="math notranslate nohighlight">\(\beta_0\)</span> as the intercept.</p>
+<p>You can imagine a cloud of data points scattered on a 2D plot.
+The OLS method fits a straight line through these points such that the vertical distances
+(errors) between the points and the line are as small as possible on average, and the
+squared differences are minimized.</p>
+</section>
+<section id="relationship-to-the-normal-equations">
+<h2>Relationship to the Normal Equations<a class="headerlink" href="#relationship-to-the-normal-equations" title="Link to this heading"></a></h2>
+<p>Equations <a class="reference internal" href="#equation-eq-beta-1">(2)</a> and <a class="reference internal" href="#equation-eq-beta-0">(3)</a> can be reformulated as a linear regression problem
+leading to the so-called normal equations.
+In linear regression, we aim to find a vector of coefficients <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> that
+best fits the data. Given:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span>: the design matrix of shape <span class="math notranslate nohighlight">\((n, p)\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the number of samples and <span class="math notranslate nohighlight">\(p\)</span> is the number
+of features</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{y}\)</span>: the target vector of shape <span class="math notranslate nohighlight">\((n,)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{w}\)</span>: the vector of coefficients of shape <span class="math notranslate nohighlight">\((p,)\)</span></p></li>
+</ul>
+<p>Our goal is to find <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> that minimizes the residual sum of squares (RSS):</p>
+<div class="math notranslate nohighlight">
+\[\min_w J(w) = \min_w \|Xw - y\|_2^2\]</div>
+<p>Compare this equation with <a class="reference internal" href="#equation-eq-ols">(1)</a>. The two equations are equivalent with
+<span class="math notranslate nohighlight">\(\mathbf{X} = [1, x_1; 1, x_2; \dots; 1, x_n]\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y} = [y_1, y_2, \dots, y_n]\)</span>.
+And the solution to the normal equations is the same as the solution to the OLS problem.</p>
+<p>The objective function (cost function) <span class="math notranslate nohighlight">\(J(w)\)</span> represents the sum of squared differences
+between the observed targets and the predicted values:</p>
+<div class="math notranslate nohighlight">
+\[J(w) = (Xw - y)^T (Xw - y)\]</div>
+<p>The expands to:</p>
+<div class="math notranslate nohighlight">
+\[J(w) = w^T X^T X w - 2 w^T X^T y + y^T y\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(y^T y\)</span> is a constant with respect to <span class="math notranslate nohighlight">\(w\)</span> and can be ignored during optimization.</p>
+<p>To find the minimum of <span class="math notranslate nohighlight">\(J(w)\)</span>, we compute its gradient with respect to <span class="math notranslate nohighlight">\(w\)</span> and set it to zero:</p>
+<div class="math notranslate nohighlight">
+\[\nabla_w J(w) = 2 X^T X w - 2 X^T y\]</div>
+<p>Setting the gradient to zero to find the critical points:</p>
+<div class="math notranslate nohighlight">
+\[2 X^T X w - 2 X^T y = 0\]</div>
+<p>Simplify by dividing both sides by 2:</p>
+<div class="math notranslate nohighlight">
+\[X^T X w = X^T y\]</div>
+<p>This equation is known as the normal equation.</p>
+<p>Assuming <span class="math notranslate nohighlight">\(X^T X\)</span> is invertible (which requires that <span class="math notranslate nohighlight">\(X\)</span> has full rank),
+we can solve for <span class="math notranslate nohighlight">\(w\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[w = (X^T X)^{-1} X^T y\]</div>
+<p>This is the closed-form solution to the linear regression problem.</p>
 </section>
 </section>
 

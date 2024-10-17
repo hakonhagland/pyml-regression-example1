@@ -216,8 +216,11 @@ to the author’s GitHub repo instead.</p>
 </section>
 <section id="life-expectancy-linear-regression">
 <h4>linear-regression<a class="headerlink" href="#life-expectancy-linear-regression" title="Link to this heading"></a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">life-expectancy</span> <span class="pre">linear-regression</span></code> performs linear regression on the simplified data file.
-It plots the regression line and the data points using matplotlib.</p>
+<p><code class="docutils literal notranslate"><span class="pre">life-expectancy</span> <span class="pre">linear-regression</span></code> performs linear regression on the combined
+GDP and life satisfaction data. If option <code class="docutils literal notranslate"><span class="pre">--simplified</span></code> is used, it will use the
+simplified data. Otherwise, it will use the full data. If the full data is used, the
+data will be filtered by the year specified with the <code class="docutils literal notranslate"><span class="pre">--year</span></code> option. The default
+year is 2021. The regression line and the data points are plotted using matplotlib.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>life-expectancy<span class="w"> </span>linear-regression<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
